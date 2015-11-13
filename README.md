@@ -3,8 +3,17 @@
 This is a collection of library source code and scripts
 to build it.
 
+- zlib
+- libpng
+- freetype
+- SDL2
+- Mesa 3d opengl support (with opengles2 support also)
+- llvm (for llvmpipe backend for shader compilation in mesa)
+- epoxy (a library like glew but better)
+- openal
+
 This kit is based on the 32-bit mingw-w64 compiler toolchain
-from e.g. Ubuntu trusty package "gcc-mingw-w64-i686".
+from e.g. Ubuntu trusty package `gcc-mingw-w64-i686`.
 
 The builder kit is self contained, other than for the compiler.
 It doesn't matter where you put it, it does not install to your root.
