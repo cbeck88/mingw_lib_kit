@@ -27,8 +27,8 @@ make all
 #mingw-w64-make all
 
 cd ../..
-#cp "$OPENAL/OpenAL32.dll" bin/
-cp "$OPENAL/libOpenAL32.dll.a" bin/
+cp "$OPENAL/OpenAL32.dll" bin/
+#cp "$OPENAL/libOpenAL32.dll.a" bin/
 cp -r "$OPENAL/../include/AL" include/
 
 # TODO: Statically link the libgcc thing in?
