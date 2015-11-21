@@ -15,6 +15,9 @@ cd zlib-1.2.8
 sed -e s/"PREFIX ="/"PREFIX = i686-w64-mingw32-"/ -i win32/Makefile.gcc
 make -f win32/Makefile.gcc
 BINARY_PATH="$DEP_ROOT/bin/" INCLUDE_PATH="$DEP_ROOT/include/" LIBRARY_PATH="$DEP_ROOT/lib/" make -f win32/Makefile.gcc install
-#cp zlib1.dll ../lib
+cp zlib1.dll ../bin/
+cp zlib1.dll ../bin/libz.dll
 #^ comment this out to use static zlib instead
 cd ..
+rm lib/libz.a
+
