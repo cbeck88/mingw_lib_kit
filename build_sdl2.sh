@@ -12,18 +12,22 @@ rm -rf SDL2-2.0.3
 
 tar xvzf SDL2-2.0.3.tar.gz
 
+# Hack
+cp Toolchain-mingw.cmake SDL2-2.0.3
+
 cd SDL2-2.0.3
 mkdir build
 cd build
-../configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --enable-static CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/lib"
+#../configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --enable-static CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/lib"
+
+cmake -DCMAKE_INSTALL_PREFIX="$DEP_ROOT" -DCMAKE_TOOLCHAIN_FILE="Toolchain-mingw.cmake" -DSDL_RENDER=OFF -DSDL_ATOMIC=OFF -DSDL_AUDIO=OFF -DSDL_THREADS=OFF  -DSDL_TIMERS=OFF -DSDL_STATIC=OFF -DDIRECTX=OFF ..
+
 make
 make install
 cd ../..
 
 # Remove some stuff we don't need
 rm lib/*SDL2*
-rm bin/*-config
-
 
 # This is the script for just extracting the binary distribution
 #../configure

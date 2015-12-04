@@ -31,7 +31,7 @@ cd build
 echo 'ac_cv_have_decl_strerror_s=${ac_cv_have_decl_strerror_s=no}' > config.cache
 #../configure -C --prefix="$DEP_ROOT/llvm-3.4/llvm-3.4.build" --host=i686-w64-mingw32 --enable-optimized --disable-assertions --disable-pthreads --enable-targets=x86 --enable-bindings=none --disable-libffi --with-c-include-dirs=/usr/i686-w64-mingw32 --with-gcc-toolchain=/usr/i686-w64-mingw32 --with-default-sysroot=/usr/i686-w64-mingw32
 
-../configure -C --prefix="$DEP_ROOT/llvm-3.4/llvm-3.4.build" --host=i686-w64-mingw32 --enable-optimized --disable-assertions --disable-pthreads --enable-targets=x86 --enable-bindings=none --disable-libffi --with-c-include-dirs=${TOOLCHAIN_DIR}/include --with-default-sysroot=${TOOLCHAIN_DIR}
+../configure -C --prefix="$DEP_ROOT/llvm-3.4/llvm-3.4.build" --host=i686-w64-mingw32 --enable-optimized --disable-assertions --disable-pthreads --enable-targets=x86 --enable-bindings=none --disable-libffi --with-c-include-dirs=${TOOLCHAIN_DIR}/include --with-gcc-toolchain=${TOOLCHAIN_DIR} --with-default-sysroot=${TOOLCHAIN_DIR}
 LDFLAGS="-static-libgcc -static-libstdc++ -static -lpthread" make VERBOSE=1
 make install
 

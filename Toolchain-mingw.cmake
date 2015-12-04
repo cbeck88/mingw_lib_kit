@@ -1,12 +1,14 @@
 # the name of the target operating system
 SET(CMAKE_SYSTEM_NAME Windows)
 
+#if (NOT CMAKE_INSTALL_PREFIX)
+#  MESSAGE(WARNING "Caller must define the CMAKE variable 'CMAKE_INSTALL_PREFIX' to be an absolute path to the root of the repository")
+#endif()
+MESSAGE(STATUS "CMAKE_INSTALL_PREFIX=" ${CMAKE_INSTALL_PREFIX})
+SET(MINGW_DEP_ROOT ${CMAKE_INSTALL_PREFIX})
+
 #SET(BIN_PATH /opt/mingw32/bin)
 SET(BIN_PATH /usr/bin)
-
-# Change this to match PWD... sorry this is somewhat poor design...
-# TODO: Make it detect pwd somehow instead
-SET(MINGW_DEP_ROOT ~/dependencies)
 
 # which compilers to use for C and C++
 SET(CMAKE_C_COMPILER ${BIN_PATH}/i686-w64-mingw32-gcc)
