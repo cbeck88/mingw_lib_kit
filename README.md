@@ -14,6 +14,8 @@ to build it.
 
 This kit is based on the 32-bit mingw-w64 compiler toolchain
 from e.g. Ubuntu trusty package `gcc-mingw-w64-i686`.
+It is set up to use the `i686-w64-mingw32-gcc-posix` compiler, i.e.
+we use posix threads model not win32 threads.
 
 The builder kit is self contained, other than for the compiler.
 It doesn't matter where you put it, it does not install to your root.
@@ -32,20 +34,27 @@ hour to do it again. If you don't want to use `ccache` you need to modify the sc
 
 Besides a standard, gcc-compatible toolchain, you need to have 
 
+- cmake >= 2.8.12
 - flex
 - bison
 - byacc
 - python2
 
 You are recommended to use the `build_all.sh` to compile the whole kit in one shot.
-Note that the script `build_first.sh` will attempt to copy `libwinpthread-1.dll` from
+Note that the script `build_clean.sh` will attempt to copy `libwinpthread-1.dll` from
 the folder `/usr/i686-w64-mingw32-gcc/lib` to the `/bin` folder. If that is not where
 your mingw-provided winpthread is, you will need to change that script, also if you
-are compiling with win32 threads instead you may need to reconfigure this and some
-other things.
+are compiling with win32 threads instead you may need to reconfigure this and some of
+the other scripts.
+
+The places where the compiler is referred to:
+- Toolchain-mingw.cmake (This is used by all builders that use cmake.)
+- build_freetype.sh (Freetype builds using an auto-tools system, no cmake available)
+- build_mesa.sh (mesa builds using scons, no cmake is available.)
 
 The results will be directories `/include`, `/lib`, `/bin`. The `make_package.sh`
-script compresses these all into a tar ball `mingw_dep_pack.tar.gz` in the root of the repository.
+script compresses these all into a tar ball `mingw_dep_pack.tar.gz` in the root of
+the repository, for easy distribution.
 
 ## Notes
 
@@ -59,6 +68,8 @@ Most of the instructions came from
 - Projects which already had nice cmake scripts which worked well with cross compilation (openal, epoxy)
 - Instructions on linux-from-scratch
 - Cross compiling guides from the original maintainers (SDL2)
+
+Most of the scripts cite their sources.
 
 ## OS X
 
