@@ -12,15 +12,25 @@ export DEP_ROOT="$PWD"
 tar xvzf libpng-1.6.17.tar.gz
 cd libpng-1.6.17
 #./configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --with-bin-configs="no" --enable-static=false CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/bin" 
-CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/bin" ./configure --host=i686-w64-mingw32 --disable-static --with-bin-configs=no --prefix="$DEP_ROOT"
-make
-make install
-cd ..
+#CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/bin" ./configure --host=i686-w64-mingw32 --disable-static --with-bin-configs=no --prefix="$DEP_ROOT"
+#make
+#make install
+#cd ..
 
-cp bin/libpng16-16.dll bin/libpng16.dll
+#cp bin/libpng16-16.dll bin/libpng16.dll
 
 # Cleanup some stuff we don't need
-rm -f bin/pngfix*
-rm -f bin/png-fix*
-rm -f bin/libpng16-config
-rm -f bin/libpng-config
+#rm -f bin/pngfix*
+#rm -f bin/png-fix*
+#rm -f bin/libpng16-config
+#rm -f bin/libpng-config
+
+cp ../Toolchain-mingw.cmake .
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX="$DEP_ROOT" -DCMAKE_TOOLCHAIN_FILE="Toolchain-mingw.cmake" -DPNG_STATIC="OFF" -DPNG_TESTS="OFF" ..
+make -j3
+make install
+cd ../..
+rm -rf lib/*
+rm -f bin/libpng*-config
