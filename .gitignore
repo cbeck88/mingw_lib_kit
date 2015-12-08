@@ -13,6 +13,7 @@
 /SDL2*/
 /llvm*/
 /Mesa*/
+/mesa*/
 /openal*/
 /freetype*/
 mingw_dep_pack.tar.gz
