@@ -11,13 +11,15 @@ export DEP_ROOT="$PWD"
 tar zxvf freetype-2.4.10.tar.gz
 cd freetype-2.4.10
 #./configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --enable-static CPPFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/lib"
-./configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --disable-static --enable-shared --without-zlib CFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/bin" CC="i686-w64-mingw32-gcc-posix"
-make
+./configure --host=i686-w64-mingw32 --prefix="$DEP_ROOT" --disable-static --enable-shared CFLAGS=-I"$DEP_ROOT/include/" LDFLAGS=-L"$DEP_ROOT/bin" CC="i686-w64-mingw32-gcc-posix"
+make VERBOSE=1
 make install
 cd ..
 
 # Remove some stuff we don't need
-rm bin/freetype-config
+rm -f bin/freetype-config
+rm -rf lib/freetype*
+#mv bin/libfreetype-6.dll bin/libfreetype.dll
 #cp bin/libfreetype-6.dll bin/libfreetype.dll
 
 # Binary gnu package from here

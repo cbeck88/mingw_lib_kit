@@ -21,11 +21,11 @@ cd zlib-1.2.8
 #cd ..
 #rm lib/libz.a
 
-cp ../Toolchain-mingw.cmake .
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX="$DEP_ROOT" -DCMAKE_TOOLCHAIN_FILE="Toolchain-mingw.cmake" ..
+cmake -DCMAKE_INSTALL_PREFIX="$DEP_ROOT" -DCMAKE_TOOLCHAIN_FILE="../Toolchain-mingw.cmake" ..
 make -j3
 make install
 cd ../..
 rm -f lib/*
+mv -v bin/libzlib.dll bin/zlib1.dll
