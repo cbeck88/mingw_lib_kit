@@ -20,11 +20,12 @@ else
 fi
 
 cp ../Toolchain-mingw.cmake .
+mkdir install_prefix
 mkdir build
 cd build
 
 cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_CROSSCOMPILING=True -DLLVM_TABLEGEN="/usr/bin/llvm-tblgen" \
--DCMAKE_INSTALL_PREFIX="$DEP_ROOT" -DCMAKE_TOOLCHAIN_FILE="Toolchain-mingw.cmake" \
+-DCMAKE_INSTALL_PREFIX="$DEP_ROOT/llvm-3.6/install_prefix" -DCMAKE_TOOLCHAIN_FILE="Toolchain-mingw.cmake" \
 -DLLVM_TARGET_ARCH="i686-w64-mingw32" -DLLVM_TARGETS_TO_BUILD="X86" \
 -DLLVM_ENABLE_THREADS="OFF" \
 -DLLVM_BUILD_TOOLS="OFF" -DLLVM_BUILD_TESTS="OFF" -DLLVM_BUILD_RUNTIME="OFF" \
@@ -32,6 +33,7 @@ cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_CROSSCOMPILING=True -DLLVM_TABLEGEN="
 -DLLVM_INCLUDE_TESTS="OFF" ..
 #-DLLVM_PARALLEL_COMPILE_JOBS=3 ..
 make -j3
+make install
 cd ../..
 
 cp -ar llvm-3.6/include include

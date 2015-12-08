@@ -12,20 +12,24 @@ rm -rf Mesa-10.4.7
 tar -xvf MesaLib-10.4.7.tar.bz2
 
 export DEP_ROOT="$PWD"
-export LLVM="$DEP_ROOT/llvm-3.4/llvm-3.4.build"
+#export LLVM="$DEP_ROOT/llvm-3.4/llvm-3.4.build"
 #export LLVM="$DEP_ROOT"
 
 cd Mesa-10.4.7
 
 # Hack to make it use our compiler i686-w64-mingw32-g??-posix...
-set -e "s|'gcc'\n|'gcc-posix'\n|g" -i scons/crossmingw.py
-set -e "s|'g++'\n|'g++-posix'\n|g" -i scons/crossmingw.py
+sed -e "s|'gcc'$|'gcc-posix'|g" -i scons/crossmingw.py
+sed -e "s|'g++'$|'g++-posix'|g" -i scons/crossmingw.py
+
+# Apply patch described by qt folks
+sed -e "s|#include <limits>|#include<limits>\n#define M_PI_2          1.57079632679489661923\n#define M_PI_4          0.78539816339744830962\n|g" -i src/glsl/builtin_functions.cpp
 
 #-L${MINGW_PREFIX}/${MINGW_TARGET}/lib
 #INC="-I${MINGW_PREFIX}/${MINGW_TARGET}/include -I${DEP_ROOT}/include"
 #CFLAGS=$INC CXXFLAGS=$INC 
 #LDFLAGS="-static -s " scons build=release platform=windows toolchain=crossmingw machine=x86 gles=yes libgl-gdi
-scons build=release platform=windows toolchain=crossmingw machine=x86 gles=yes libgl-gdi
+export CXXFLAGS="-std=c++11"
+LDFLAGS="-static -s" scons build=release platform=windows toolchain=crossmingw machine=x86 gles=yes libgl-gdi verbose=yes
 
 cp -a build/windows-x86/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
 cp -a build/windows-x86/mapi/shared-glapi/libglapi.dll "$DEP_ROOT/bin"
