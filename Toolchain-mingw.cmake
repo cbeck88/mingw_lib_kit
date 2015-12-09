@@ -15,8 +15,12 @@ SET(MINGW_DEP_ROOT ${CMAKE_INSTALL_PREFIX})
 #SET(CMAKE_CXX_COMPILER ${BIN_PATH}/i686-w64-mingw32-g++)
 #SET(CMAKE_RC_COMPILER ${BIN_PATH}/i686-w64-mingw32-windres)
 
-SET(CMAKE_C_COMPILER i686-w64-mingw32-gcc-posix)
-SET(CMAKE_CXX_COMPILER i686-w64-mingw32-g++-posix)
+#SET(CMAKE_C_COMPILER i686-w64-mingw32-gcc-posix)
+#SET(CMAKE_CXX_COMPILER i686-w64-mingw32-g++-posix)
+#SET(CMAKE_RC_COMPILER i686-w64-mingw32-windres)
+
+SET(CMAKE_C_COMPILER i686-w64-mingw32-gcc)
+SET(CMAKE_CXX_COMPILER i686-w64-mingw32-g++)
 SET(CMAKE_RC_COMPILER i686-w64-mingw32-windres)
 
 # here is the target environment located

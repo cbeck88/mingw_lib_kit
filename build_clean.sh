@@ -13,11 +13,13 @@ mkdir lib
 # you may need to change this.
 PREFIX=/usr
 #PREFIX=/home/chris/mingw-src/prefix
-cp ${PREFIX}/i686-w64-mingw32/lib/libwinpthread-1.dll bin/
+cp -v ${PREFIX}/i686-w64-mingw32/lib/libwinpthread-1.dll bin/
+cp -v ${PREFIX}/lib/gcc/i686-w64-mingw32/4.8/libgcc_s_sjlj-1.dll bin/
+cp -v ${PREFIX}/lib/gcc/i686-w64-mingw32/4.8/libstdc++-6.dll bin/
 #cp ${PREFIX}/lib/gcc/i686-w64-mingw32/4.9.3/libgcc_s_sjlj-1.dll bin/
 #cp ${PREFIX}/lib/gcc/i686-w64-mingw32/4.9.3/libstdc++-6.dll bin/
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgcc_s_sjlj-1.dll bin/
-cp /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libstdc++-6.dll bin/
+#cp -v /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libgcc_s_sjlj-1.dll bin/
+#cp -v /usr/lib/gcc/i686-w64-mingw32/4.9-posix/libstdc++-6.dll bin/
 
 #cp ${PREFIX}/i686-w64-mingw32/lib/libgcc_s_sjlj-1.dll bin/
 #cp ${PREFIX}/i686-w64-mingw32/lib/libstdc++-6.dll bin/
