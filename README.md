@@ -70,15 +70,3 @@ Most of the instructions came from
 - Cross compiling guides from the original maintainers (SDL2)
 
 Most of the scripts cite their sources.
-
-## OS X
-
-- build*_osx.sh
-  This was an attempt to get the llvm / mesa build to work the same
-  way on OS X. It is *NOT* known to work due to missing "glProto"
-  headers
-  Would love to know how to fix it. :)
-  I currently build mesa for OS X using macports, by using
-  `port edit mesa` to stick in the configuration options I need,
-  but it is clearly far from optimal.
-
