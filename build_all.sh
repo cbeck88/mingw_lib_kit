@@ -6,6 +6,7 @@ set -u
 ./build_zlib.sh
 ./build_libpng.sh
 ./build_freetype.sh
+./build_libxml2.sh
 #./build_llvm.sh # disabled to use softpipe
                  # if you want llvm pipe then build this first, then modify build_mesa.sh
 ./build_mesa.sh
