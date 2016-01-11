@@ -19,19 +19,18 @@ export OPENAL="$DEP_ROOT/openal-soft-1.16.0/build"
 
 cd "$OPENAL"
 
-# -DCMAKE_MODULE_LINKER_FLAGS="-static-libgcc"
-# TODO: Make this work! ^
-
 cmake -DCMAKE_TOOLCHAIN_FILE="../../Toolchain-mingw.cmake" ..
 make all
 #mingw-w64-make all
 
 cd ../..
 cp "$OPENAL/OpenAL32.dll" bin/
-#cp "$OPENAL/libOpenAL32.dll.a" bin/
-cp -r "$OPENAL/../include/AL" include/
+cp -r "$OPENAL/../include/AL/." include/
 
-# TODO: Statically link the libgcc thing in?
 
-#cp /usr/lib/gcc/i686-w64-mingw32/4.8/libgcc_s_sjlj-1.dll bin/
-#cp /usr/i686-w64-mingw32/lib/libwinpthread-1.dll bin/
+# We don't want to have an 'AL' subdirectory in /include, even though that is how
+# it is normally installed in linux, because it in C++ files it is #included as
+# e.g. #include <al.h>, #include <alc.h>. Not as #include <AL/al.h> etc. And this
+# is important for cross-platform support, because in OS X the AL directory is
+# not part of their framework. So here, we just put the header root at include,
+# with all the other libraries.
