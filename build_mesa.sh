@@ -42,19 +42,21 @@ sed -e "s|#define M_PIf   ((float) M_PI)|#define M_PI_2          1.5707963267948
 
 
 LDFLAGS="-static -s " \
-CFLAGS="-pipe -D_USE_MATH_DEFINES" \
-CXXFLAGS="-pipe -std=c++11 -D_USE_MATH_DEFINES" \
-scons build=debug platform=windows toolchain=crossmingw machine=x86 debug=yes verbose=yes libgl-gdi
+CFLAGS="-D_USE_MATH_DEFINES" \
+CXXFLAGS="-std=c++11 -D_USE_MATH_DEFINES" \
+scons build=debug platform=windows toolchain=crossmingw machine=x86 libgl-gdi -j3
+#scons build=release platform=windows toolchain=crossmingw machine=x86 libgl-gdi -j3
+
 
 # If machine=generic
 #cp -a build/windows/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
 #cp -a build/windows/mapi/shared-glapi/libglapi.dll "$DEP_ROOT/bin"
 
 # If machine=x86
-cp -a build/windows-x86/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
-cp -a build/windows-x86/mapi/shared-glapi/libglapi.dll "$DEP_ROOT/bin"
+#cp -a build/windows-x86/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
+#cp -a build/windows-x86/mapi/shared-glapi/libglapi.dll "$DEP_ROOT/bin"
 
-#cp -a build/windows-x86-debug/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
+cp -a build/windows-x86-debug/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
 #cp -a build/windows-x86-debug/mapi/shared-glapi/libglapi.dll "$DEP_ROOT/bin"
 cp -r include/* "$DEP_ROOT/include"
 cd ..
