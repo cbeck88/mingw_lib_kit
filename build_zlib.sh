@@ -28,4 +28,4 @@ make -j3
 make install
 cd ../..
 rm -f lib/*
-mv -v bin/libzlib.dll bin/zlib1.dll
+#mv -v bin/libzlib.dll bin/zlib1.dll
