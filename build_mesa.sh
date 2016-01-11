@@ -36,10 +36,15 @@ sed -e "s|#define M_PIf   ((float) M_PI)|#define M_PI_2          1.5707963267948
 #INC="-I${MINGW_PREFIX}/${MINGW_TARGET}/include -I${DEP_ROOT}/include"
 #CFLAGS=$INC CXXFLAGS=$INC 
 #LDFLAGS="-static -s " scons build=release platform=windows toolchain=crossmingw machine=x86 gles=yes libgl-gdi
+
+#CFLAGS="-march=i686 -pipe -D_USE_MATH_DEFINES" \
+#CXXFLAGS="-march=i686 -pipe -std=c++11 -D_USE_MATH_DEFINES" \
+
+
 LDFLAGS="-static -s " \
-CFLAGS="-march=i686 -pipe -D_USE_MATH_DEFINES" \
-CXXFLAGS="-march=i686 -pipe -std=c++11 -D_USE_MATH_DEFINES" \
-scons build=release platform=windows toolchain=crossmingw machine=x86 gles=yes debug=yes verbose=yes libgl-gdi
+CFLAGS="-pipe -D_USE_MATH_DEFINES" \
+CXXFLAGS="-pipe -std=c++11 -D_USE_MATH_DEFINES" \
+scons build=debug platform=windows toolchain=crossmingw machine=x86 debug=yes verbose=yes libgl-gdi
 
 # If machine=generic
 #cp -a build/windows/gallium/targets/libgl-gdi/opengl32.dll "$DEP_ROOT/bin/"
