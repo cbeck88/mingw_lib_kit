@@ -39,6 +39,14 @@ Besides a standard, gcc-compatible toolchain, you need to have
 - bison
 - byacc
 - python2
+- python Mako templates
+
+On recent versions of ubuntu, you can install all of these from packages, and Mako from pip:
+
+```
+    apt-get install cmake flex bison byacc python2 python-pip
+    pip install Mako
+```
 
 You are recommended to use the `build_all.sh` to compile the whole kit in one shot.
 Note that the script `build_clean.sh` will attempt to copy `libwinpthread-1.dll` from
